@@ -24,6 +24,9 @@ namespace biblioteca
             InitializeComponent();
             dgvAutor.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAutor.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Atualiza();
+            btnAdicionar.Visible = true;
+            btnConfirmar.Visible = true;
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -105,8 +108,12 @@ namespace biblioteca
             #region Adicionando_autor
 
             CadAutor autor2 = new CadAutor();
+            this.Close();
             autor2.ShowDialog();
-
+            if(Global.refresh != 0)
+            {
+                txtNomeAutor.Texts = Global.usarNomeAutor.ToUpper();
+            }
             #endregion
         }
 
@@ -138,6 +145,7 @@ namespace biblioteca
             DataGridViewCell seletor = dgvAutor.SelectedCells[0];
             string nome = seletor.Value.ToString();
             Global.usarNomeAutor = nome.ToUpper();
+            Global.UsarAutor = nome.ToUpper();
             DialogResult d = MessageBox.Show("Sucesso! Clique em OK para o cadastro.", "ATENÇÃO!", MessageBoxButtons.OKCancel);
 
             switch (d)
@@ -147,6 +155,7 @@ namespace biblioteca
 
                 case DialogResult.OK:
                     this.Close();
+                    Global.usarNomeAutor = nome.ToUpper();
                     break;
             }
         }

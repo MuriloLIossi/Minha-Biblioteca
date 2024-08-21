@@ -103,24 +103,9 @@ namespace biblioteca
                 try
                 {
 
-                    Sql.conector.Open();
-                    SqlCommand verificar = new SqlCommand("SELECT * FROM Operador WHERE username_operador = '" + txtLogin.Texts + "' AND senha_operador = '" + txtSenha.Texts + "' ", Sql.conector);
-                    bool resultado = verificar.ExecuteReader().HasRows;
-              
-
+                    bool resultado = Sql.LoginVerificador(txtLogin.Texts, txtSenha.Texts);
                     if (resultado == true)
                     {
-                        string id_opstr;
-                        int id_op;
-                        SqlCommand cod_op = new SqlCommand("SELECT pk_id_operador FROM Operador WHERE username_operador = '" + txtLogin.Texts + "' AND senha_operador = '" + txtSenha.Texts + "' ", Sql.conector);
-                        
-                        id_opstr = cod_op.ToString();
-
-                        if(int.TryParse(id_opstr, out id_op))
-                        {
-                            Global.Pk_operador = id_op;
-                        }
-
                         Principal principal = new Principal();
                         this.Hide();
                         principal.ShowDialog();
@@ -134,7 +119,7 @@ namespace biblioteca
                     }
 
                 }
-                catch (SqlException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                     Sql.conector.Close();
@@ -149,7 +134,9 @@ namespace biblioteca
 
         }
 
+        private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
 
-
+        }
     }
 }

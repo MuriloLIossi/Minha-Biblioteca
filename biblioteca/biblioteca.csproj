@@ -94,6 +94,12 @@
     <Compile Include="CadAutor.Designer.cs">
       <DependentUpon>CadAutor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CadEditora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadEditora.Designer.cs">
+      <DependentUpon>CadEditora.cs</DependentUpon>
+    </Compile>
     <Compile Include="CadLivro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,12 @@
       <DependentUpon>Cidade.cs</DependentUpon>
     </Compile>
     <Compile Include="Cookies.cs" />
+    <Compile Include="Editora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editora.Designer.cs">
+      <DependentUpon>Editora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Funcoes.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="idioma.cs">

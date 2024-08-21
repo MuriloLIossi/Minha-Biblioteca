@@ -655,6 +655,7 @@
             this.btnCadAutor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCadAutor.TextColor = System.Drawing.Color.White;
             this.btnCadAutor.UseVisualStyleBackColor = false;
+            this.btnCadAutor.Click += new System.EventHandler(this.btnCadAutor_Click);
             // 
             // panel13
             // 

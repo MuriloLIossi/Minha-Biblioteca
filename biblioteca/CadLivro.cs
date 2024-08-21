@@ -23,7 +23,6 @@ namespace biblioteca
             if (Global.refresh == 0)
             {
                 Global.nomeAutor = String.Empty;
-                Global.usarNomeNacionalidade = String.Empty;
             }
             txtAutor.Texts = Global.usarNomeAutor;
             txtIdioma.Texts = Global.usarNomeIdioma;
@@ -33,6 +32,7 @@ namespace biblioteca
             txtTombo.Enabled = false;
             cbbTipo.Texts = Global.usarTipoPub;
             TremComArray();
+            Global.UsarIdioma = "";
 
 
             #endregion
@@ -123,16 +123,19 @@ namespace biblioteca
 
             Autor autor1 = new Autor();
             autor1.ShowDialog();
-
+            if(Global.refresh != 0)
+            txtAutor.Text = Global.usarNomeAutor.ToUpper();
             #endregion
             Global.nomeAutor = String.Empty;
-            Global.usarNomeNacionalidade = String.Empty;
+            txtAutor.Texts = Global.UsarAutor;
+
+
 
         }
 
         private void txtAutor__TextChanged(object sender, EventArgs e)
         {
-
+            txtAutor.Text = Global.usarNomeAutor.ToUpper();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -156,10 +159,12 @@ namespace biblioteca
         private void btnPesquidarIdi_Click(object sender, EventArgs e)
         {
             Global.nomeIdioma = String.Empty;
-            Global.usarNomeIdioma = String.Empty;
-
             idioma idioma = new idioma();
             idioma.ShowDialog();
+            if(Global.UsarIdioma != String.Empty)
+            {
+                txtIdioma.Texts = Global.UsarIdioma.ToUpper() ?? "";
+            }
         }
 
         private void txtIdioma__TextChanged(object sender, EventArgs e)

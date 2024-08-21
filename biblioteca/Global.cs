@@ -45,6 +45,8 @@ namespace biblioteca
         public static int forLegal;
         public static int forLegal2;
         public static int andarCidade;
+        public static string UsarAutor;
+        public static string UsarIdioma;
     }
 
     

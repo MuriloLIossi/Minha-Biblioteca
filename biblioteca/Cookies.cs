@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace biblioteca
 {
-    internal class Cookies
+    public class Cookies
     {
+
+        public static bool resultado;
+
     }
 }

@@ -143,5 +143,11 @@ namespace biblioteca
         {
 
         }
+
+        private void btnCadAutor_Click(object sender, EventArgs e)
+        {
+            CadAutor autor = new CadAutor();
+            autor.ShowDialog();
+        }
     }
 }

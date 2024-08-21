@@ -149,7 +149,8 @@ namespace biblioteca
 
         private void dgvIdioma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Global.usarNomeIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString();
+            Global.usarNomeIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
+            Global.UsarIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
 
         }
     }

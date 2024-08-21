@@ -30,16 +30,16 @@
         {
             RJCodeAdvance.RJControls.RJButton btnMinimizate;
             RJCodeAdvance.RJControls.RJButton btnSair;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.lblSoftware = new System.Windows.Forms.Label();
             this.dgvCidade = new System.Windows.Forms.DataGridView();
             this.lblCidade = new System.Windows.Forms.Label();
             this.txtCidade = new RJCodeAdvance.RJControls.RJTextBox();
             this.btnAdicionar = new RJCodeAdvance.RJControls.RJButton();
-            this.btnPesquidarIdi = new RJCodeAdvance.RJControls.RJButton();
             this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
+            this.btnPesquidarIdi = new RJCodeAdvance.RJControls.RJButton();
             btnMinimizate = new RJCodeAdvance.RJControls.RJButton();
             btnSair = new RJCodeAdvance.RJControls.RJButton();
             this.pnlMenu.SuspendLayout();
@@ -83,6 +83,7 @@
             btnSair.Text = "X";
             btnSair.TextColor = System.Drawing.Color.White;
             btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // pnlMenu
             // 
@@ -108,23 +109,23 @@
             // dgvCidade
             // 
             this.dgvCidade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCidade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCidade.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCidade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCidade.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCidade.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvCidade.GridColor = System.Drawing.Color.White;
             this.dgvCidade.Location = new System.Drawing.Point(37, 86);
             this.dgvCidade.Name = "dgvCidade";
@@ -191,27 +192,6 @@
             this.btnAdicionar.Visible = false;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // btnPesquidarIdi
-            // 
-            this.btnPesquidarIdi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesquidarIdi.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesquidarIdi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesquidarIdi.BorderRadius = 10;
-            this.btnPesquidarIdi.BorderSize = 0;
-            this.btnPesquidarIdi.FlatAppearance.BorderSize = 0;
-            this.btnPesquidarIdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPesquidarIdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquidarIdi.ForeColor = System.Drawing.Color.White;
-            this.btnPesquidarIdi.Image = global::biblioteca.Properties.Resources.lupa;
-            this.btnPesquidarIdi.Location = new System.Drawing.Point(514, 34);
-            this.btnPesquidarIdi.Name = "btnPesquidarIdi";
-            this.btnPesquidarIdi.Size = new System.Drawing.Size(45, 32);
-            this.btnPesquidarIdi.TabIndex = 28;
-            this.btnPesquidarIdi.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPesquidarIdi.TextColor = System.Drawing.Color.White;
-            this.btnPesquidarIdi.UseVisualStyleBackColor = false;
-            this.btnPesquidarIdi.Click += new System.EventHandler(this.btnPesquidarIdi_Click);
-            // 
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
@@ -236,6 +216,27 @@
             this.btnConfirmar.Visible = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // btnPesquidarIdi
+            // 
+            this.btnPesquidarIdi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesquidarIdi.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesquidarIdi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesquidarIdi.BorderRadius = 10;
+            this.btnPesquidarIdi.BorderSize = 0;
+            this.btnPesquidarIdi.FlatAppearance.BorderSize = 0;
+            this.btnPesquidarIdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquidarIdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquidarIdi.ForeColor = System.Drawing.Color.White;
+            this.btnPesquidarIdi.Image = global::biblioteca.Properties.Resources.lupa;
+            this.btnPesquidarIdi.Location = new System.Drawing.Point(510, 33);
+            this.btnPesquidarIdi.Name = "btnPesquidarIdi";
+            this.btnPesquidarIdi.Size = new System.Drawing.Size(45, 38);
+            this.btnPesquidarIdi.TabIndex = 32;
+            this.btnPesquidarIdi.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPesquidarIdi.TextColor = System.Drawing.Color.White;
+            this.btnPesquidarIdi.UseVisualStyleBackColor = false;
+            this.btnPesquidarIdi.Click += new System.EventHandler(this.btnPesquidarIdi_Click_1);
+            // 
             // Cidade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,10 +244,10 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(581, 450);
+            this.Controls.Add(this.btnPesquidarIdi);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.dgvCidade);
-            this.Controls.Add(this.btnPesquidarIdi);
             this.Controls.Add(this.lblCidade);
             this.Controls.Add(this.txtCidade);
             this.Controls.Add(this.pnlMenu);
@@ -268,9 +269,9 @@
         private System.Windows.Forms.Label lblSoftware;
         private RJCodeAdvance.RJControls.RJButton btnAdicionar;
         private System.Windows.Forms.DataGridView dgvCidade;
-        private RJCodeAdvance.RJControls.RJButton btnPesquidarIdi;
         private System.Windows.Forms.Label lblCidade;
         private RJCodeAdvance.RJControls.RJTextBox txtCidade;
         private RJCodeAdvance.RJControls.RJButton btnConfirmar;
+        private RJCodeAdvance.RJControls.RJButton btnPesquidarIdi;
     }
 }

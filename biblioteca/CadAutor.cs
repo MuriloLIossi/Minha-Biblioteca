@@ -70,12 +70,14 @@ namespace biblioteca
 
                 Sql.conector.Close();
                 Sql.conector.Open();
-                SqlCommand inserir = new SqlCommand("INSERT INTO Autor (nome_autor, fk_id_nacionalidade_autor) VALUES ('" + txtAutor.Texts + "', " + Global.pkBuscada + ") ", Sql.conector);
+                SqlCommand inserir = new SqlCommand("INSERT INTO Autor (nome_autor, fk_id_nacionalidade_autor) VALUES ('" + txtAutor.Texts.ToUpper() + "', " + Global.pkBuscada + ") ", Sql.conector);
                 inserir.ExecuteNonQuery();
 
                 Sql.conector.Close();
                 MessageBox.Show("Sucesso!");
-                
+                Global.usarNomeAutor = txtAutor.Texts;
+                Global.UsarAutor = Global.nomeAutor.ToUpper();
+
             }
             catch (SqlException ex)
             {
