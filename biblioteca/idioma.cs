@@ -22,6 +22,7 @@ namespace biblioteca
             InitializeComponent();
             dgvIdioma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvIdioma.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -63,6 +64,7 @@ namespace biblioteca
                     if (Global.resultNomeNacionalidade == true)
                     {
                         Global.usarNomeIdioma = Global.idioma;
+                        Global.UsarIdioma = Global.idioma;
                     }
 
                     Sql.conector.Close();
@@ -123,7 +125,6 @@ namespace biblioteca
                 if (result1 == true)
                 {
                     MessageBox.Show("Sucesso!");
-                    Global.usarNomeIdioma = Global.idioma;
                 }
                 Sql.conector.Close();
                 Atualiza();
@@ -150,8 +151,8 @@ namespace biblioteca
         private void dgvIdioma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Global.usarNomeIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
-            Global.UsarIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
-
+            Global.Idioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
+            Global.UsarIdioma = Global.Idioma.ToUpper();
         }
     }
 }

@@ -163,7 +163,7 @@ namespace biblioteca
             idioma.ShowDialog();
             if(Global.UsarIdioma != String.Empty)
             {
-                txtIdioma.Texts = Global.UsarIdioma.ToUpper() ?? "";
+                txtIdioma.Texts = Global.UsarIdioma.ToUpper();
             }
         }
 

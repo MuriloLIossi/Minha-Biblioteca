@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace biblioteca
@@ -47,6 +48,7 @@ namespace biblioteca
         public static int andarCidade;
         public static string UsarAutor;
         public static string UsarIdioma;
+        public static string Idioma;
     }
 
     
