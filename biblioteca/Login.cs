@@ -110,7 +110,7 @@ namespace biblioteca
                         this.Hide();
                         principal.ShowDialog();
                         Sql.conector.Close();
-                        Funcoes.zerador();
+                        //Funcoes.zerador();
                     }
                     else
                     {

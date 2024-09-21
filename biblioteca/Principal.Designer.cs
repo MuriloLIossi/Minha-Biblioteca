@@ -62,8 +62,6 @@
             this.rjButton4 = new RJCodeAdvance.RJControls.RJButton();
             this.panel14 = new System.Windows.Forms.Panel();
             this.btnCadAutor = new RJCodeAdvance.RJControls.RJButton();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.btnCadEstado = new RJCodeAdvance.RJControls.RJButton();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btnCadCidade = new RJCodeAdvance.RJControls.RJButton();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -92,7 +90,6 @@
             this.panel15.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel14.SuspendLayout();
-            this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel20.SuspendLayout();
@@ -450,6 +447,7 @@
             this.rjButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.rjButton1.TextColor = System.Drawing.Color.White;
             this.rjButton1.UseVisualStyleBackColor = false;
+            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // panel2
             // 
@@ -548,7 +546,6 @@
             this.pnlOutros.Controls.Add(this.panel15);
             this.pnlOutros.Controls.Add(this.panel10);
             this.pnlOutros.Controls.Add(this.panel14);
-            this.pnlOutros.Controls.Add(this.panel13);
             this.pnlOutros.Controls.Add(this.panel12);
             this.pnlOutros.Controls.Add(this.panel11);
             this.pnlOutros.Controls.Add(this.panel20);
@@ -563,7 +560,7 @@
             // 
             this.panel15.Controls.Add(this.rjButton10);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel15.Location = new System.Drawing.Point(564, 0);
+            this.panel15.Location = new System.Drawing.Point(470, 0);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(94, 100);
             this.panel15.TabIndex = 10;
@@ -596,7 +593,7 @@
             // 
             this.panel10.Controls.Add(this.rjButton4);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(470, 0);
+            this.panel10.Location = new System.Drawing.Point(376, 0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(94, 100);
             this.panel10.TabIndex = 9;
@@ -623,12 +620,13 @@
             this.rjButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.rjButton4.TextColor = System.Drawing.Color.White;
             this.rjButton4.UseVisualStyleBackColor = false;
+            this.rjButton4.Click += new System.EventHandler(this.rjButton4_Click_1);
             // 
             // panel14
             // 
             this.panel14.Controls.Add(this.btnCadAutor);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel14.Location = new System.Drawing.Point(376, 0);
+            this.panel14.Location = new System.Drawing.Point(282, 0);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(94, 100);
             this.panel14.TabIndex = 8;
@@ -656,38 +654,6 @@
             this.btnCadAutor.TextColor = System.Drawing.Color.White;
             this.btnCadAutor.UseVisualStyleBackColor = false;
             this.btnCadAutor.Click += new System.EventHandler(this.btnCadAutor_Click);
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.btnCadEstado);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel13.Location = new System.Drawing.Point(282, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(94, 100);
-            this.panel13.TabIndex = 7;
-            // 
-            // btnCadEstado
-            // 
-            this.btnCadEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnCadEstado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnCadEstado.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnCadEstado.BorderRadius = 10;
-            this.btnCadEstado.BorderSize = 0;
-            this.btnCadEstado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCadEstado.FlatAppearance.BorderSize = 0;
-            this.btnCadEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadEstado.ForeColor = System.Drawing.Color.White;
-            this.btnCadEstado.Image = global::biblioteca.Properties.Resources.estado;
-            this.btnCadEstado.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCadEstado.Location = new System.Drawing.Point(0, 0);
-            this.btnCadEstado.Name = "btnCadEstado";
-            this.btnCadEstado.Size = new System.Drawing.Size(94, 100);
-            this.btnCadEstado.TabIndex = 21;
-            this.btnCadEstado.Text = "Cadastrar estado";
-            this.btnCadEstado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCadEstado.TextColor = System.Drawing.Color.White;
-            this.btnCadEstado.UseVisualStyleBackColor = false;
             // 
             // panel12
             // 
@@ -865,7 +831,6 @@
             this.panel15.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
@@ -905,12 +870,10 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel20;
         private RJCodeAdvance.RJControls.RJButton btnCadIdioma;
-        private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel12;
         private RJCodeAdvance.RJControls.RJButton btnCadCidade;
         private RJCodeAdvance.RJControls.RJButton btnCadNacio;
         private System.Windows.Forms.Panel panel14;
-        private RJCodeAdvance.RJControls.RJButton btnCadEstado;
         private System.Windows.Forms.Panel panel10;
         private RJCodeAdvance.RJControls.RJButton btnCadAutor;
         private System.Windows.Forms.Panel pnlMais;

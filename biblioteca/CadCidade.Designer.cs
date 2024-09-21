@@ -30,25 +30,20 @@
         {
             RJCodeAdvance.RJControls.RJButton btnMinimizate;
             RJCodeAdvance.RJControls.RJButton btnSair;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.lblSoftware = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnPesqAutor = new RJCodeAdvance.RJControls.RJButton();
             this.lblCidade = new System.Windows.Forms.Label();
-            this.txtCidade = new RJCodeAdvance.RJControls.RJTextBox();
-            this.dgvEditora = new System.Windows.Forms.DataGridView();
-            this.btnRefresh = new RJCodeAdvance.RJControls.RJButton();
-            this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
+            this.txtCity = new RJCodeAdvance.RJControls.RJTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cbbEstado = new RJCodeAdvance.RJControls.RJComboBox();
             this.lblEstado = new System.Windows.Forms.Label();
+            this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
+            this.btnPesqAutor = new RJCodeAdvance.RJControls.RJButton();
             btnMinimizate = new RJCodeAdvance.RJControls.RJButton();
             btnSair = new RJCodeAdvance.RJControls.RJButton();
             this.pnlMenu.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEditora)).BeginInit();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,34 +114,13 @@
             // 
             this.panel3.Controls.Add(this.btnPesqAutor);
             this.panel3.Controls.Add(this.lblCidade);
-            this.panel3.Controls.Add(this.txtCidade);
+            this.panel3.Controls.Add(this.txtCity);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 27);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(800, 70);
             this.panel3.TabIndex = 23;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // btnPesqAutor
-            // 
-            this.btnPesqAutor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesqAutor.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesqAutor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnPesqAutor.BorderRadius = 10;
-            this.btnPesqAutor.BorderSize = 0;
-            this.btnPesqAutor.FlatAppearance.BorderSize = 0;
-            this.btnPesqAutor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPesqAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesqAutor.ForeColor = System.Drawing.Color.White;
-            this.btnPesqAutor.Image = global::biblioteca.Properties.Resources.lupa;
-            this.btnPesqAutor.Location = new System.Drawing.Point(672, 20);
-            this.btnPesqAutor.Name = "btnPesqAutor";
-            this.btnPesqAutor.Size = new System.Drawing.Size(45, 32);
-            this.btnPesqAutor.TabIndex = 18;
-            this.btnPesqAutor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPesqAutor.TextColor = System.Drawing.Color.White;
-            this.btnPesqAutor.UseVisualStyleBackColor = false;
-            this.btnPesqAutor.Click += new System.EventHandler(this.btnPesqAutor_Click);
             // 
             // lblCidade
             // 
@@ -159,97 +133,29 @@
             this.lblCidade.TabIndex = 17;
             this.lblCidade.Text = "Nome da cidade";
             // 
-            // txtCidade
+            // txtCity
             // 
-            this.txtCidade.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCidade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.txtCidade.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.txtCidade.BorderFocusColor = System.Drawing.Color.White;
-            this.txtCidade.BorderRadius = 0;
-            this.txtCidade.BorderSize = 2;
-            this.txtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCidade.ForeColor = System.Drawing.Color.White;
-            this.txtCidade.Location = new System.Drawing.Point(159, 21);
-            this.txtCidade.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCidade.Multiline = false;
-            this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtCidade.PasswordChar = false;
-            this.txtCidade.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtCidade.PlaceholderText = "";
-            this.txtCidade.Size = new System.Drawing.Size(494, 31);
-            this.txtCidade.TabIndex = 16;
-            this.txtCidade.Texts = "";
-            this.txtCidade.UnderlinedStyle = false;
-            this.txtCidade._TextChanged += new System.EventHandler(this.txtCidade__TextChanged);
-            // 
-            // dgvEditora
-            // 
-            this.dgvEditora.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEditora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvEditora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEditora.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEditora.GridColor = System.Drawing.Color.White;
-            this.dgvEditora.Location = new System.Drawing.Point(62, 197);
-            this.dgvEditora.Name = "dgvEditora";
-            this.dgvEditora.Size = new System.Drawing.Size(591, 241);
-            this.dgvEditora.TabIndex = 24;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderRadius = 10;
-            this.btnRefresh.BorderSize = 0;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(674, 385);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(78, 32);
-            this.btnRefresh.TabIndex = 36;
-            this.btnRefresh.Text = "Recarregar";
-            this.btnRefresh.TextColor = System.Drawing.Color.White;
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            // 
-            // btnConfirmar
-            // 
-            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnConfirmar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnConfirmar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnConfirmar.BorderRadius = 10;
-            this.btnConfirmar.BorderSize = 0;
-            this.btnConfirmar.FlatAppearance.BorderSize = 0;
-            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Image = global::biblioteca.Properties.Resources.confirmar;
-            this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConfirmar.Location = new System.Drawing.Point(659, 257);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(102, 91);
-            this.btnConfirmar.TabIndex = 37;
-            this.btnConfirmar.Text = "Confirmar";
-            this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnConfirmar.TextColor = System.Drawing.Color.White;
-            this.btnConfirmar.UseCompatibleTextRendering = true;
-            this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.txtCity.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtCity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.txtCity.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.txtCity.BorderFocusColor = System.Drawing.Color.White;
+            this.txtCity.BorderRadius = 0;
+            this.txtCity.BorderSize = 2;
+            this.txtCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCity.ForeColor = System.Drawing.Color.White;
+            this.txtCity.Location = new System.Drawing.Point(159, 21);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCity.Multiline = false;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtCity.PasswordChar = false;
+            this.txtCity.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtCity.PlaceholderText = "";
+            this.txtCity.Size = new System.Drawing.Size(494, 31);
+            this.txtCity.TabIndex = 16;
+            this.txtCity.Texts = "";
+            this.txtCity.UnderlinedStyle = false;
+            this.txtCity._TextChanged += new System.EventHandler(this.txtCidade__TextChanged);
             // 
             // panel5
             // 
@@ -260,6 +166,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(800, 70);
             this.panel5.TabIndex = 38;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // cbbEstado
             // 
@@ -294,6 +201,51 @@
             this.lblEstado.Text = "Estado";
             this.lblEstado.Click += new System.EventHandler(this.lblTipo_Click);
             // 
+            // btnConfirmar
+            // 
+            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnConfirmar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnConfirmar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnConfirmar.BorderRadius = 10;
+            this.btnConfirmar.BorderSize = 0;
+            this.btnConfirmar.FlatAppearance.BorderSize = 0;
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmar.Image = global::biblioteca.Properties.Resources.confirmar;
+            this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConfirmar.Location = new System.Drawing.Point(351, 204);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(102, 91);
+            this.btnConfirmar.TabIndex = 37;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConfirmar.TextColor = System.Drawing.Color.White;
+            this.btnConfirmar.UseCompatibleTextRendering = true;
+            this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            // 
+            // btnPesqAutor
+            // 
+            this.btnPesqAutor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesqAutor.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesqAutor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.btnPesqAutor.BorderRadius = 10;
+            this.btnPesqAutor.BorderSize = 0;
+            this.btnPesqAutor.FlatAppearance.BorderSize = 0;
+            this.btnPesqAutor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesqAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesqAutor.ForeColor = System.Drawing.Color.White;
+            this.btnPesqAutor.Image = global::biblioteca.Properties.Resources.lupa;
+            this.btnPesqAutor.Location = new System.Drawing.Point(672, 20);
+            this.btnPesqAutor.Name = "btnPesqAutor";
+            this.btnPesqAutor.Size = new System.Drawing.Size(45, 32);
+            this.btnPesqAutor.TabIndex = 18;
+            this.btnPesqAutor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPesqAutor.TextColor = System.Drawing.Color.White;
+            this.btnPesqAutor.UseVisualStyleBackColor = false;
+            this.btnPesqAutor.Click += new System.EventHandler(this.btnPesqAutor_Click);
+            // 
             // CadCidade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,18 +254,16 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.dgvEditora);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CadCidade";
             this.Text = "Cidade";
+            this.Load += new System.EventHandler(this.CadCidade_Load);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEditora)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -327,9 +277,7 @@
         private System.Windows.Forms.Panel panel3;
         private RJCodeAdvance.RJControls.RJButton btnPesqAutor;
         private System.Windows.Forms.Label lblCidade;
-        private RJCodeAdvance.RJControls.RJTextBox txtCidade;
-        private System.Windows.Forms.DataGridView dgvEditora;
-        private RJCodeAdvance.RJControls.RJButton btnRefresh;
+        private RJCodeAdvance.RJControls.RJTextBox txtCity;
         private RJCodeAdvance.RJControls.RJButton btnConfirmar;
         private System.Windows.Forms.Panel panel5;
         private RJCodeAdvance.RJControls.RJComboBox cbbEstado;

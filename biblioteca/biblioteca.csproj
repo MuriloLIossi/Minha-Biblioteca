@@ -172,6 +172,9 @@
     <EmbeddedResource Include="CadAutor.resx">
       <DependentUpon>CadAutor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CadEditora.resx">
+      <DependentUpon>CadEditora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CadLivro.resx">
       <DependentUpon>CadLivro.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cidade.resx">
       <DependentUpon>Cidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editora.resx">
+      <DependentUpon>Editora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="idioma.resx">
       <DependentUpon>idioma.cs</DependentUpon>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 
 namespace biblioteca
 {
@@ -52,6 +53,7 @@ namespace biblioteca
             Global.usarNomeNacionalidade = "";
             Global.nomeAutor = txtNomeAutor.Texts;
 
+            Atualiza();
             try
             {
 
@@ -94,8 +96,10 @@ namespace biblioteca
         }
 
         public void Atualiza()
-        {
-            dados = new SqlDataAdapter("select nome_autor AS nome from Autor Where nome_autor LIKE '%" + Global.nomeAutor + "%' ", Sql.conector);
+        {   
+            dgvAutor.DataSource = null;
+            //MessageBox.Show("select nome_autor AS nome from Autor Where nome_autor LIKE '%" + Global.nomeAutor + "%' ");
+            dados = new SqlDataAdapter($"select nome_autor AS nome from Autor Where nome_autor LIKE '%{Global.nomeAutor}' ", Sql.conector);
             datb = new DataTable(); //preenche o datat table
             dados.Fill(datb);//mostra no data grid view
 
@@ -108,7 +112,6 @@ namespace biblioteca
             #region Adicionando_autor
 
             CadAutor autor2 = new CadAutor();
-            this.Close();
             autor2.ShowDialog();
             if(Global.refresh != 0)
             {

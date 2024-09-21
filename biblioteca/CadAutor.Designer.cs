@@ -34,7 +34,6 @@
             this.lblNacionalidade = new System.Windows.Forms.Label();
             this.txtNomeNacio = new RJCodeAdvance.RJControls.RJTextBox();
             this.txtAutor = new RJCodeAdvance.RJControls.RJTextBox();
-            this.btnRefresh = new RJCodeAdvance.RJControls.RJButton();
             this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
             this.btnPesquidarIdi = new RJCodeAdvance.RJControls.RJButton();
             this.pnlMenu = new System.Windows.Forms.Panel();
@@ -154,26 +153,6 @@
             this.txtAutor.UnderlinedStyle = false;
             this.txtAutor._TextChanged += new System.EventHandler(this.txtAutor__TextChanged);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderRadius = 10;
-            this.btnRefresh.BorderSize = 0;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(29, 363);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(78, 32);
-            this.btnRefresh.TabIndex = 35;
-            this.btnRefresh.Text = "Recarregar";
-            this.btnRefresh.TextColor = System.Drawing.Color.White;
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
@@ -230,13 +209,12 @@
             this.pnlMenu.Size = new System.Drawing.Size(558, 27);
             this.pnlMenu.TabIndex = 8;
             // 
-            // Autor2
+            // CadAutor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(558, 450);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.txtAutor);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnPesquidarIdi);
@@ -245,7 +223,7 @@
             this.Controls.Add(this.lblNomeAutor);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Autor2";
+            this.Name = "CadAutor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autor2";
             this.pnlMenu.ResumeLayout(false);
@@ -261,7 +239,6 @@
         private RJCodeAdvance.RJControls.RJButton btnPesquidarIdi;
         private RJCodeAdvance.RJControls.RJButton btnConfirmar;
         private RJCodeAdvance.RJControls.RJTextBox txtAutor;
-        private RJCodeAdvance.RJControls.RJButton btnRefresh;
         private System.Windows.Forms.Panel pnlMenu;
     }
 }

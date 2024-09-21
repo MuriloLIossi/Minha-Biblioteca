@@ -16,8 +16,13 @@ namespace biblioteca
 
         public CadCidade()
         {
+            //txtCity.Texts = "";
             InitializeComponent();
+            txtCity.Texts = Global.Cidade ?? "";
             ArrayCbbEstado();
+            cbbEstado.Texts = Global.Estado;
+           // cbbEstado.Enabled = false;
+            txtCity.Enabled = false;
 
 
         }
@@ -34,21 +39,21 @@ namespace biblioteca
 
         private void btnPesqAutor_Click(object sender, EventArgs e)
         {
-            if (txtCidade.Texts != null && txtCidade.Text != string.Empty && txtCidade.Texts != "") 
+            if (txtCity.Texts != null && txtCity.Text != string.Empty && txtCity.Texts != "") 
             {
-                Global.cidade = txtCidade.Text;
+                Global.Cidade = txtCity.Text;
 
                 try
                 {
                     Sql.conector.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT nome_cidade FROM Cidade WHERE nome_cidade = '"+Global.cidade+"' ", Sql.conector);
+                    SqlCommand cmd = new SqlCommand("SELECT nome_cidade FROM Cidade WHERE nome_cidade = '"+Global.Cidade+"' ", Sql.conector);
                     bool result = cmd.ExecuteReader().HasRows;
 
                     if (result == true)
                     {
                         MessageBox.Show("Já existe uma cidade com esse nome cadastrada.");
-                        txtCidade.Texts = "";
-                        Global.cidade = "";
+                        txtCity.Texts = "";
+                        Global.Cidade = "";
                         Sql.conector.Close();
                     }
                     else 
@@ -68,7 +73,7 @@ namespace biblioteca
 
         private void cbbEstado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Global.Estado = cbbEstado.SelectedItem.ToString();
         }
 
         public void ArrayCbbEstado()
@@ -78,14 +83,23 @@ namespace biblioteca
 
             try
             {
-                Sql.conector.Open();
-                for (Global.andarCidade = 1; Global.andarCidade <= 27; Global.andarCidade++)
+
+                for (Global.andarCidade = 3; Global.andarCidade <= 31; Global.andarCidade++)
                 {
-                    SqlCommand verificar = new SqlCommand("SELECT nome_estado FROM Estado WHERE pk_id_estado = '" + Global.andarCidade + "'");
-                    SqlDataReader ler = verificar.ExecuteReader();
-                    if (ler.Read())
+                    Sql.conector.Close();
+                    Sql.conector.Open();
+                   string query = "SELECT sigla_estado FROM Estado WHERE pk_id_estado = " + Global.andarCidade + " ";
+                   using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                     {
-                        Global.cidade = "";
+                        using(SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                               Global.nomeEstado[Global.andarCidade - 1] = reader["sigla_estado"].ToString();
+                            }
+
+                            Sql.conector.Close();
+                        }
                     }
 
                 }
@@ -93,6 +107,16 @@ namespace biblioteca
             }
             catch (SqlException ex) { MessageBox.Show(ex.ToString()); }
 
+            cbbEstado.Items.Clear();
+
+            for (int i = 0; i < Global.nomeEstado.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(Global.nomeEstado[i])) // Verifica se o item não está vazio
+                {
+                    cbbEstado.Items.Add(Global.nomeEstado[i]);
+                }
+
+            }
         }
 
 
@@ -102,6 +126,50 @@ namespace biblioteca
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Sql.conector.Open();
+
+                string query = "SELECT pk_id_estado FROM Estado WHERE sigla_estado = '" + Global.Estado + "'";
+                using (SqlCommand procurar = new SqlCommand(query, Sql.conector))
+                {
+                    using (SqlDataReader reader = procurar.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Global.pkEstado = Convert.ToInt32(reader["pk_id_estado"]);
+                        }
+                    }
+
+                }
+                Global.usarNomeCidade = txtCity.Texts;
+                string insert = "INSERT INTO Cidade (nome_cidade, fk_id_estado) VALUES ('" + Global.usarNomeCidade.ToUpper() + "', '" + Global.pkEstado + "')";
+                using (SqlCommand cmd = new SqlCommand(insert, Sql.conector))
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Sucesso!");
+                }
+
+            }
+            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+
+            MessageBox.Show(Global.pkEstado.ToString());
+            //MessageBox.Show();
+        }
+
+        private void CadCidade_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
         }

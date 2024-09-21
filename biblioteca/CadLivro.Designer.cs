@@ -70,7 +70,7 @@
             this.pnl2 = new System.Windows.Forms.Panel();
             this.btnPesquisarEd = new RJCodeAdvance.RJControls.RJButton();
             this.lblEditora = new System.Windows.Forms.Label();
-            this.txtEditora = new RJCodeAdvance.RJControls.RJTextBox();
+            this.txtEditoras = new RJCodeAdvance.RJControls.RJTextBox();
             this.pnl1 = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.txtTitulo = new RJCodeAdvance.RJControls.RJTextBox();
@@ -83,7 +83,6 @@
             this.btnCancelar = new RJCodeAdvance.RJControls.RJButton();
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
-            this.btnRefresh = new RJCodeAdvance.RJControls.RJButton();
             btnMinimizate = new RJCodeAdvance.RJControls.RJButton();
             btnSair = new RJCodeAdvance.RJControls.RJButton();
             this.panel10.SuspendLayout();
@@ -280,6 +279,7 @@
             this.txtTombo.TabIndex = 22;
             this.txtTombo.Texts = "";
             this.txtTombo.UnderlinedStyle = false;
+            this.txtTombo._TextChanged += new System.EventHandler(this.txtTombo__TextChanged);
             // 
             // panel8
             // 
@@ -682,7 +682,7 @@
             // 
             this.pnl2.Controls.Add(this.btnPesquisarEd);
             this.pnl2.Controls.Add(this.lblEditora);
-            this.pnl2.Controls.Add(this.txtEditora);
+            this.pnl2.Controls.Add(this.txtEditoras);
             this.pnl2.Location = new System.Drawing.Point(683, 33);
             this.pnl2.Name = "pnl2";
             this.pnl2.Size = new System.Drawing.Size(683, 70);
@@ -721,29 +721,29 @@
             this.lblEditora.Text = "Editora";
             this.lblEditora.Click += new System.EventHandler(this.lblEditora_Click);
             // 
-            // txtEditora
+            // txtEditoras
             // 
-            this.txtEditora.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEditora.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.txtEditora.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.txtEditora.BorderFocusColor = System.Drawing.Color.White;
-            this.txtEditora.BorderRadius = 0;
-            this.txtEditora.BorderSize = 2;
-            this.txtEditora.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditora.ForeColor = System.Drawing.Color.White;
-            this.txtEditora.Location = new System.Drawing.Point(100, 21);
-            this.txtEditora.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEditora.Multiline = false;
-            this.txtEditora.Name = "txtEditora";
-            this.txtEditora.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtEditora.PasswordChar = false;
-            this.txtEditora.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtEditora.PlaceholderText = "";
-            this.txtEditora.Size = new System.Drawing.Size(385, 31);
-            this.txtEditora.TabIndex = 6;
-            this.txtEditora.Texts = "";
-            this.txtEditora.UnderlinedStyle = false;
-            this.txtEditora._TextChanged += new System.EventHandler(this.txtEditora__TextChanged);
+            this.txtEditoras.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEditoras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.txtEditoras.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.txtEditoras.BorderFocusColor = System.Drawing.Color.White;
+            this.txtEditoras.BorderRadius = 0;
+            this.txtEditoras.BorderSize = 2;
+            this.txtEditoras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEditoras.ForeColor = System.Drawing.Color.White;
+            this.txtEditoras.Location = new System.Drawing.Point(100, 21);
+            this.txtEditoras.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEditoras.Multiline = false;
+            this.txtEditoras.Name = "txtEditoras";
+            this.txtEditoras.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtEditoras.PasswordChar = false;
+            this.txtEditoras.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtEditoras.PlaceholderText = "";
+            this.txtEditoras.Size = new System.Drawing.Size(385, 31);
+            this.txtEditoras.TabIndex = 6;
+            this.txtEditoras.Texts = "";
+            this.txtEditoras.UnderlinedStyle = false;
+            this.txtEditoras._TextChanged += new System.EventHandler(this.txtEditora__TextChanged);
             // 
             // pnl1
             // 
@@ -775,7 +775,7 @@
             this.txtTitulo.BorderSize = 2;
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.ForeColor = System.Drawing.Color.White;
-            this.txtTitulo.Location = new System.Drawing.Point(89, 21);
+            this.txtTitulo.Location = new System.Drawing.Point(95, 22);
             this.txtTitulo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitulo.Multiline = false;
             this.txtTitulo.Name = "txtTitulo";
@@ -918,33 +918,12 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
-            this.btnRefresh.BorderRadius = 10;
-            this.btnRefresh.BorderSize = 0;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(18, 724);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(78, 32);
-            this.btnRefresh.TabIndex = 28;
-            this.btnRefresh.Text = "Recarregar";
-            this.btnRefresh.TextColor = System.Drawing.Color.White;
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // CadLivro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(1366, 768);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel16);
             this.Controls.Add(this.panel13);
@@ -1018,7 +997,7 @@
         private System.Windows.Forms.Label lblTitulo;
         private RJCodeAdvance.RJControls.RJTextBox txtTitulo;
         private System.Windows.Forms.Label lblEditora;
-        private RJCodeAdvance.RJControls.RJTextBox txtEditora;
+        private RJCodeAdvance.RJControls.RJTextBox txtEditoras;
         private RJCodeAdvance.RJControls.RJButton btnPesquisarEd;
         private RJCodeAdvance.RJControls.RJButton btnPesquidarIdi;
         private System.Windows.Forms.Label lblIdioma;
@@ -1053,7 +1032,6 @@
         private RJCodeAdvance.RJControls.RJButton btnCancelar;
         private System.Windows.Forms.Panel panel17;
         private RJCodeAdvance.RJControls.RJButton btnConfirmar;
-        private RJCodeAdvance.RJControls.RJButton btnRefresh;
         private RJCodeAdvance.RJControls.RJComboBox cbbTipo;
     }
 }

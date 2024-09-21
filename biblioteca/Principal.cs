@@ -107,7 +107,7 @@ namespace biblioteca
         private void rjButton2_Click_2(object sender, EventArgs e)
         {
             Funcoes.CadLivro();
-            Funcoes.zerador();
+           // Funcoes.zerador();
         }
 
         private void btnCadNacio_Click(object sender, EventArgs e)
@@ -124,13 +124,14 @@ namespace biblioteca
 
         private void rjButton10_Click(object sender, EventArgs e)
         {
-            //CadEditora ed = new CadEditora();
-            //ed.ShowDialog();    
+            Editora ed = new Editora();
+            ed.ShowDialog();    
         }
 
         private void btnCadCidade_Click(object sender, EventArgs e)
         {
-
+            Cidade cid = new Cidade();
+            cid.ShowDialog();
         }
 
         private void rjButton9_Click(object sender, EventArgs e)
@@ -148,6 +149,21 @@ namespace biblioteca
         {
             CadAutor autor = new CadAutor();
             autor.ShowDialog();
+        }
+
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCadEstado_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void rjButton4_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

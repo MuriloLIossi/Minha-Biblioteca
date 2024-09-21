@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace biblioteca
         public CadLivro()
         {
             InitializeComponent();
+            txtTitulo.Select();
 
 
             #region configs
@@ -28,7 +30,7 @@ namespace biblioteca
             txtIdioma.Texts = Global.usarNomeIdioma;
             txtAutor.Enabled = false;
             txtIdioma.Enabled = false;
-            txtEditora.Enabled = false;
+            txtEditoras.Enabled = false;
             txtTombo.Enabled = false;
             cbbTipo.Texts = Global.usarTipoPub;
             TremComArray();
@@ -80,7 +82,8 @@ namespace biblioteca
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            Funcoes.zerador();
+            InsertLivro();
+            MessageBox.Show("Clicado");
 
         }
 
@@ -113,6 +116,7 @@ namespace biblioteca
             {
                 txtTombo.Texts = Global.resultado.ToString();
                 btnGerarT.Visible = false;
+                lblGerar.Visible = false;
             }
             #endregion
         }
@@ -123,8 +127,7 @@ namespace biblioteca
 
             Autor autor1 = new Autor();
             autor1.ShowDialog();
-            if(Global.refresh != 0)
-            txtAutor.Text = Global.usarNomeAutor.ToUpper();
+            //txtAutor.Text = Global.usarNomeAutor.ToUpper() ?? "";
             #endregion
             Global.nomeAutor = String.Empty;
             txtAutor.Texts = Global.UsarAutor;
@@ -140,20 +143,15 @@ namespace biblioteca
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            Recarregar();
+
         }
 
-        public void Recarregar()
-        {
-            this.Hide();
-            CadLivro frm = new CadLivro();
-            frm.ShowDialog();
-            Global.refresh = Global.refresh + 1;
-        }
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Funcoes.zerador();
+
+
         }
 
         private void btnPesquidarIdi_Click(object sender, EventArgs e)
@@ -161,7 +159,7 @@ namespace biblioteca
             Global.nomeIdioma = String.Empty;
             idioma idioma = new idioma();
             idioma.ShowDialog();
-            if(Global.UsarIdioma != String.Empty)
+            if (Global.UsarIdioma != String.Empty)
             {
                 txtIdioma.Texts = Global.UsarIdioma.ToUpper();
             }
@@ -198,6 +196,7 @@ namespace biblioteca
             {
                 for (Global.andarPk = 1; Global.andarPk <= 6; Global.andarPk++)
                 {
+                    Sql.conector.Close();
                     Sql.conector.Open();
                     SqlCommand procurar = new SqlCommand("SELECT nome_tipo_publicacao FROM Tipo_publicacao WHERE pk_id_tipo_publicacao = " + Global.andarPk + " ", Sql.conector);
                     SqlDataReader ler = procurar.ExecuteReader();
@@ -233,18 +232,97 @@ namespace biblioteca
 
         private void cbbTipo_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-           Global.usarTipoPub = cbbTipo.SelectedItem.ToString();
+            Global.usarTipoPub = cbbTipo.SelectedItem.ToString();
         }
 
         private void btnPesquisarEd_Click(object sender, EventArgs e)
         {
-            //Editora ed = new Editora();
-            //ed.ShowDialog();
+            Editora ed = new Editora();
+            ed.ShowDialog();
+            txtEditoras.Texts = Global.mainEditora;
+
         }
 
         private void txtEditora__TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void txtTombo__TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InsertLivro()
+        {
+            if (txtTitulo.Texts != "" && txtPags.Texts != "" && txtpha.Texts != "" && txtCdd.Texts != "" && txtEditoras.Texts != "" && txtIdioma.Texts != "" && txtAutor.Texts != "" && cbbTipo.Texts != "" && txtTombo.Texts != "")
+            {
+                #region variaveis
+                string titulo = txtTitulo.Texts.ToUpper();
+                string pags = txtPags.Texts;
+                string pha = txtpha.Texts;
+                string cdd = txtCdd.Texts;
+                string edicao = txtEdicao.Texts;
+                if (edicao.Trim() == "")
+                {
+                    edicao = "NULL";
+                }
+                string volume = txtVolume.Texts;
+                if (volume.Trim() == "")
+                {
+                    volume = "NULL";
+                }
+                string ano = txtAno.Texts;
+                if (ano.Trim() == "")
+                {
+                    ano = "NULL";
+                }
+                string isbn = txtReg.Texts;
+                if(isbn.Trim() == "")
+                {
+                    isbn = "NULL";
+                }
+                string tombo = txtTombo.Texts;
+                string autor = Funcoes.pegaAutor();
+                string editora = Funcoes.PegaEditora();
+                string idioma = Funcoes.pegaIdioma();
+                string tipoPub = Funcoes.pegaTipoPub();
+                #endregion
+
+                try
+                {
+                    Sql.conector.Open();
+
+                    string query = $"INSERT INTO Livro (titulo_livro, pha_livro, cdd_livro, registro_livro, pags_livro, edicao_livro, volume_livro, ano_livro, tombo_livro, fk_id_autor_livro, fk_id_editora_livro, fk_id_idioma_livro, fk_id_tipo_livro) VALUES ('{titulo}', '{pha}', '{cdd}', '{isbn}', {pags}, {edicao}, {volume}, {ano}, {tombo}, {autor}, {editora}, {idioma}, {tipoPub})";
+                    using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string verificar = $"SELECT * FROM Livro WHERE titulo_livro = '{titulo}' AND fk_id_autor_livro = {autor}";
+                    using (SqlCommand cmd = new SqlCommand(verificar, Sql.conector))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                MessageBox.Show("Livro cadastrado com sucesso!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro ao cadastrar livro!");
+                            }
+                        }
+                    }
+
+                    Sql.conector.Close();
+                }
+                catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+                catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+
+            }
+        }
+
+
     }
 }

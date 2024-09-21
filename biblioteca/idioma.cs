@@ -22,6 +22,7 @@ namespace biblioteca
             InitializeComponent();
             dgvIdioma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvIdioma.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Atualiza();
 
         }
 
@@ -150,9 +151,15 @@ namespace biblioteca
 
         private void dgvIdioma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Global.usarNomeIdioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
-            Global.Idioma = dgvIdioma.Rows[e.RowIndex].Cells[0].Value.ToString().ToUpper();
+
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            Global.usarNomeIdioma = dgvIdioma.CurrentRow.Cells[0].Value.ToString().ToUpper();
+            Global.Idioma = dgvIdioma.CurrentRow.Cells[0].Value.ToString().ToUpper();
             Global.UsarIdioma = Global.Idioma.ToUpper();
+            this.Close();
         }
     }
 }
