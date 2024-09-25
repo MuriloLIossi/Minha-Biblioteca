@@ -39,31 +39,7 @@ namespace biblioteca
 
         private void btnPesqAutor_Click(object sender, EventArgs e)
         {
-            if (txtCity.Texts != null && txtCity.Text != string.Empty && txtCity.Texts != "") 
-            {
-                Global.Cidade = txtCity.Text;
-
-                try
-                {
-                    Sql.conector.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT nome_cidade FROM Cidade WHERE nome_cidade = '"+Global.Cidade+"' ", Sql.conector);
-                    bool result = cmd.ExecuteReader().HasRows;
-
-                    if (result == true)
-                    {
-                        MessageBox.Show("Já existe uma cidade com esse nome cadastrada.");
-                        txtCity.Texts = "";
-                        Global.Cidade = "";
-                        Sql.conector.Close();
-                    }
-                    else 
-                    {
-                        SqlCommand insert = new SqlCommand("INSERT INTO Cidade (nome_cidade, pk_id_estado) ");
-                    }
-
-                } finally { Sql.conector.Close(); }
-
-            }
+            
         }
 
         private void lblTipo_Click(object sender, EventArgs e)
@@ -88,9 +64,10 @@ namespace biblioteca
                 {
                     Sql.conector.Close();
                     Sql.conector.Open();
-                   string query = "SELECT sigla_estado FROM Estado WHERE pk_id_estado = " + Global.andarCidade + " ";
+                   string query = "SELECT sigla_estado FROM Estado WHERE pk_id_estado = @andarCidade ";
                    using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                     {
+                        cmd.Parameters.AddWithValue("@andarCidade", Global.andarCidade);
                         using(SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
@@ -105,7 +82,7 @@ namespace biblioteca
                 }
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); }
 
             cbbEstado.Items.Clear();
 
@@ -136,11 +113,12 @@ namespace biblioteca
             {
                 Sql.conector.Open();
 
-                string query = "SELECT pk_id_estado FROM Estado WHERE sigla_estado = '" + Global.Estado + "'";
+                string query = "SELECT pk_id_estado FROM Estado WHERE sigla_estado = @Estado";
                 using (SqlCommand procurar = new SqlCommand(query, Sql.conector))
                 {
+                    procurar.Parameters.AddWithValue("@Estado", Global.Estado);
                     using (SqlDataReader reader = procurar.ExecuteReader())
-                    {
+                    { 
                         if (reader.Read())
                         {
                             Global.pkEstado = Convert.ToInt32(reader["pk_id_estado"]);
@@ -148,19 +126,23 @@ namespace biblioteca
                     }
 
                 }
+
                 Global.usarNomeCidade = txtCity.Texts;
-                string insert = "INSERT INTO Cidade (nome_cidade, fk_id_estado) VALUES ('" + Global.usarNomeCidade.ToUpper() + "', '" + Global.pkEstado + "')";
+
+                string insert = "INSERT INTO Cidade (nome_cidade, fk_id_estado) VALUES (@usarNomeCidade, @pkEstado)";
                 using (SqlCommand cmd = new SqlCommand(insert, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@usarNomeCidade", Global.usarNomeCidade.ToUpper());
+                    cmd.Parameters.AddWithValue("@pkEstado", Global.pkEstado);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Sucesso!");
                 }
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
-            MessageBox.Show(Global.pkEstado.ToString());
+           // MessageBox.Show(Global.pkEstado.ToString());
             //MessageBox.Show();
         }
 

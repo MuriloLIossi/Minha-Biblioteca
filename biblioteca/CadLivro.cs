@@ -15,6 +15,9 @@ namespace biblioteca
     public partial class CadLivro : Form
     {
 
+        SqlDataAdapter dados; //mostra os coidigos do sql
+        DataTable datb;
+
         public CadLivro()
         {
             InitializeComponent();
@@ -33,12 +36,44 @@ namespace biblioteca
             txtEditoras.Enabled = false;
             txtTombo.Enabled = false;
             cbbTipo.Texts = Global.usarTipoPub;
+            separar.Enabled = false;
+            dgvEditora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEditora.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            HScroll();
+            VScroll();
+            Atualiza();
             TremComArray();
-            Global.UsarIdioma = "";
-
 
             #endregion
 
+        }
+
+        public void HScroll()
+        {
+            hScrollBar1.Minimum = 0;
+            hScrollBar1.Maximum = dgvEditora.RowCount - 1; // Máximo baseado no número de linhas
+            hScrollBar1.SmallChange = 1;
+            hScrollBar1.LargeChange = 10;
+        }
+
+        public void VScroll()
+        {
+            vScrollBar1.Minimum = 0;
+            vScrollBar1.Maximum = dgvEditora.RowCount - 1; // Máximo baseado no número de linhas
+            vScrollBar1.SmallChange = 1;
+            vScrollBar1.LargeChange = 10;
+        }
+
+        public void Atualiza()
+        {
+
+            string dadosprocura = "select nome_tipo_publicacao AS tipo, titulo_livro AS titulo, cdd_livro AS CDD, pha_livro AS PHA, tombo_livro AS 'cód de publicação', nome_autor As autor from Livro INNER JOIN dbo.Autor A on A.pk_id_autor = Livro.fk_id_autor_livro INNER JOIN dbo.Tipo_publicacao Tp on Tp.pk_id_tipo_publicacao = Livro.fk_id_tipo_livro";
+            dados = new SqlDataAdapter(dadosprocura, Sql.conector);
+            datb = new DataTable(); //preenche o datat table
+            dados.Fill(datb);//mostra no data grid view
+
+            dgvEditora.DataSource = datb;
+            dgvEditora.Refresh();
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -97,15 +132,19 @@ namespace biblioteca
                 try
                 {
                     Sql.conector.Open();
+                    string query = "SELECT tombo_livro FROM Livro WHERE tombo_livro = @resultado";
 
-                    SqlCommand verificar = new SqlCommand("SELECT tombo_livro FROM Livro WHERE tombo_livro = '" + Global.resultado + "'", Sql.conector);
-                    Global.verificado = verificar.ExecuteReader().HasRows;
+                    using(SqlCommand verificar = new SqlCommand(query, Sql.conector))
+                    {
+                        verificar.Parameters.AddWithValue("@resultado", Global.resultado);
+                        Global.verificado = verificar.ExecuteReader().HasRows;
+                    }
 
                 }
                 catch (SqlException ex)
                 {
 
-                    string msg = ex.ToString();
+                    string msg = ex.Message;
 
                 }
 
@@ -198,18 +237,23 @@ namespace biblioteca
                 {
                     Sql.conector.Close();
                     Sql.conector.Open();
-                    SqlCommand procurar = new SqlCommand("SELECT nome_tipo_publicacao FROM Tipo_publicacao WHERE pk_id_tipo_publicacao = " + Global.andarPk + " ", Sql.conector);
-                    SqlDataReader ler = procurar.ExecuteReader();
-                    if (ler.Read())
+                    string query = "SELECT nome_tipo_publicacao FROM Tipo_publicacao WHERE pk_id_tipo_publicacao = @andarPk";
+                    using(SqlCommand procurar = new SqlCommand(query, Sql.conector))
                     {
-                        Global.nomeTipoPub[Global.andarPk - 1] = ler["nome_tipo_publicacao"].ToString();
+                        procurar.Parameters.AddWithValue("@andarPk", Global.andarPk);
+                        SqlDataReader ler = procurar.ExecuteReader();
+                        if (ler.Read())
+                        {
+                            Global.nomeTipoPub[Global.andarPk - 1] = ler["nome_tipo_publicacao"].ToString();
 
+                        }
                     }
+
                     Sql.conector.Close();
                 }
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); }
 
             cbbTipo.Items.Clear();
 
@@ -293,13 +337,16 @@ namespace biblioteca
                 {
                     Sql.conector.Open();
 
-                    string query = $"INSERT INTO Livro (titulo_livro, pha_livro, cdd_livro, registro_livro, pags_livro, edicao_livro, volume_livro, ano_livro, tombo_livro, fk_id_autor_livro, fk_id_editora_livro, fk_id_idioma_livro, fk_id_tipo_livro) VALUES ('{titulo}', '{pha}', '{cdd}', '{isbn}', {pags}, {edicao}, {volume}, {ano}, {tombo}, {autor}, {editora}, {idioma}, {tipoPub})";
+                    string query = $"INSERT INTO Livro (titulo_livro, pha_livro, cdd_livro, registro_livro, pags_livro, edicao_livro, volume_livro, ano_livro, tombo_livro, fk_id_autor_livro, fk_id_editora_livro, fk_id_idioma_livro, fk_id_tipo_livro) VALUES ('{titulo}', {pha}, '{cdd}', '{isbn}', {pags}, {edicao}, {volume}, {ano}, {tombo}, {autor}, {editora}, {idioma}, {tipoPub})";
                     using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                     {
+                        MessageBox.Show(query);
                         cmd.ExecuteNonQuery();
+                        Sql.conector.Close();
                     }
 
-                    string verificar = $"SELECT * FROM Livro WHERE titulo_livro = '{titulo}' AND fk_id_autor_livro = {autor}";
+                    Sql.conector.Open();
+                    string verificar = $"SELECT titulo_livro, fk_id_autor_livro FROM Livro WHERE titulo_livro = '{titulo}' AND fk_id_autor_livro = {autor}";
                     using (SqlCommand cmd = new SqlCommand(verificar, Sql.conector))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -323,6 +370,15 @@ namespace biblioteca
             }
         }
 
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            dgvEditora.FirstDisplayedScrollingRowIndex = hScrollBar1.Value;
 
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            dgvEditora.FirstDisplayedScrollingRowIndex = vScrollBar1.Value;
+        }
     }
 }

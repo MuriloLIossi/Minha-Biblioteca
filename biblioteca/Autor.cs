@@ -56,16 +56,21 @@ namespace biblioteca
             Atualiza();
             try
             {
-
                 Sql.conector.Open();
-                SqlCommand procurar = new SqlCommand("SELECT nome_autor FROM Autor WHERE nome_autor LIKE '%" + Global.nomeAutor + "%'", Sql.conector);
-                Global.resultNomeAutor = procurar.ExecuteReader().HasRows;
+                string query = "SELECT nome_autor FROM Autor WHERE nome_autor LIKE '%'+@nomeAutor+'%'";
+                using (SqlCommand procurar = new SqlCommand(query, Sql.conector))
+                {
+                    procurar.Parameters.AddWithValue("@nomeAutor", Global.nomeAutor);
+                    Global.resultNomeAutor = procurar.ExecuteReader().HasRows;
+                }
+
+
                 Sql.conector.Close();
 
             }
             catch (SqlException ex) 
             {
-                string err = ex.ToString();     
+                string err = ex.Message;     
                 Sql.conector.Close();
             }
 

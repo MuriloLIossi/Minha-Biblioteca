@@ -79,12 +79,15 @@ namespace biblioteca
             {
 
                 Sql.conector.Open();
-                SqlCommand procurar = new SqlCommand("SELECT nome_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = '" + Global.nomeNacionalidade + "'", Sql.conector);
-                Global.resultNomeNacionalidade = procurar.ExecuteReader().HasRows;
-
-                if (Global.resultNomeNacionalidade == true)
+                string query = "SELECT nome_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = @nomeNacionalidade";
+                using (SqlCommand procurar = new SqlCommand(query, Sql.conector)) 
                 {
-                    Global.usarNomeNacionalidade = Global.nomeNacionalidade;
+                    procurar.Parameters.AddWithValue("@nomeNacionalidade", Global.nomeNacionalidade.ToUpper());
+                    Global.resultNomeNacionalidade = procurar.ExecuteReader().HasRows;
+                    if (Global.resultNomeNacionalidade == true)
+                    {
+                        Global.usarNomeNacionalidade = Global.nomeNacionalidade;
+                    } 
                 }
 
                 Sql.conector.Close();
@@ -92,7 +95,7 @@ namespace biblioteca
             }
             catch (SqlException ex)
             {
-                string err = ex.ToString();
+                string err = ex.Message;
                 Sql.conector.Close();
             }
 
@@ -122,11 +125,20 @@ namespace biblioteca
             try
             {
                 Sql.conector.Open();
-                SqlCommand adc = new SqlCommand("INSERT INTO Nacionalidade (nome_nacionalidade) VALUES ('" + Global.nomeNacionalidade.ToUpper() + "')", Sql.conector);
-                adc.ExecuteNonQuery();
+                string query = "INSERT INTO Nacionalidade (nome_nacionalidade) VALUES (@nomeNacionalidade)";
+                SqlCommand adc = new SqlCommand(query, Sql.conector);
+                {
+                    adc.Parameters.AddWithValue("@nomeNacionalidade", Global.nomeNacionalidade.ToUpper());
+                    adc.ExecuteNonQuery();
+                }
 
-                SqlCommand certeza = new SqlCommand("SELECT nome_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = '" + Global.nomeNacionalidade + "' ", Sql.conector);
-                bool result1 = certeza.ExecuteReader().HasRows;
+                bool result1;
+                string query1 = "SELECT nome_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = @nomeNacionalidade";
+                using(SqlCommand certeza = new SqlCommand(query1, Sql.conector))
+                {
+                    certeza.Parameters.AddWithValue("@nomeNacionalidade", Global.nomeNacionalidade.ToUpper());
+                    result1 = certeza.ExecuteReader().HasRows;
+                }
 
                 if (result1 == true)
                 {
@@ -139,7 +151,7 @@ namespace biblioteca
             }
             catch (SqlException ex)
             {
-                string err = ex.ToString();
+                string err = ex.Message;
                 Sql.conector.Close();
             }
             #endregion
@@ -147,7 +159,7 @@ namespace biblioteca
 
         private void rjButton1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show(Global.usarNomeNacionalidade);
+            
         }
 
         private void dgvNacionalidade_CellContentClick_1(object sender, DataGridViewCellEventArgs e)

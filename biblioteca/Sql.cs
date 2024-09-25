@@ -24,18 +24,47 @@ namespace biblioteca
                 try
                 {
                     Sql.conector.Open();
-                    SqlCommand verificar = new SqlCommand("SELECT * FROM Operador WHERE username_operador = '" + user + "' AND senha_operador = '" + senha + "' ", Sql.conector);
-                    Cookies.resultado = verificar.ExecuteReader().HasRows;
+                    string query = "SELECT username_operador FROM Operador WHERE username_operador = @user";
+                    using (SqlCommand verificar = new SqlCommand(query, Sql.conector))
+                    {
+                        verificar.Parameters.AddWithValue("@user", user);
+                        Cookies.continuar = verificar.ExecuteReader().HasRows;
+                        Sql.conector.Close();
+                        if (Cookies.continuar)
+                        {
+                            Sql.conector.Open();
+                            string query2 = "SELECT senha_operador FROM Operador WHERE username_operador = @usernameOp";
+                            using (SqlCommand verificar2 = new SqlCommand(query2, Sql.conector))
+                            {
+                                verificar2.Parameters.AddWithValue("@usernameOp", user);
+                                using (SqlDataReader readerSenha = verificar2.ExecuteReader())
+                                {
+                                    if (readerSenha.Read())
+                                    {
+                                        Cookies.senhaResult = readerSenha["senha_operador"].ToString();
+                                    }
+
+                                }
+                            }
+
+                            Sql.conector.Close();
+                        }
+                        else
+                        {
+                            Cookies.verificar = false;
+                        }
+
+                        Sql.conector.Close();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
                     Sql.conector.Close();
                 }
-                catch (SqlException ex) 
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                    Sql.conector.Close();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Message);
                     Sql.conector.Close();
                 }
                 finally
@@ -44,6 +73,13 @@ namespace biblioteca
                 }
             }
 
+            Cookies.verificar = BCrypt.Net.BCrypt.Verify(senha, Cookies.senhaResult);
+            
+            if(Cookies.continuar && Cookies.verificar)
+            {
+                Cookies.resultado = true;
+            }
+ 
             return Cookies.resultado;
         }
 

@@ -14,9 +14,6 @@ namespace biblioteca
     public partial class Login : Form
     {
 
-        
-
-
         public Login()
         {
             InitializeComponent();
@@ -102,9 +99,11 @@ namespace biblioteca
 
                 try
                 {
+                    string user = txtLogin.Texts;
+                    string senha = txtSenha.Texts;
 
-                    bool resultado = Sql.LoginVerificador(txtLogin.Texts, txtSenha.Texts);
-                    if (resultado == true)
+                    bool resultado = Sql.LoginVerificador(user, senha);
+                    if (resultado)
                     {
                         Principal principal = new Principal();
                         this.Hide();
@@ -114,14 +113,14 @@ namespace biblioteca
                     }
                     else
                     {
-                        MessageBox.Show("Atenção", "Usuario não encontrado");
+                        MessageBox.Show("Usuario não encontrado", "Atenção");
                         Sql.conector.Close();
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Message);
                     Sql.conector.Close();
                 }
 
@@ -135,6 +134,11 @@ namespace biblioteca
         }
 
         private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtSenha__TextChanged(object sender, EventArgs e)
         {
 
         }

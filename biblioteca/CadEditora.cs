@@ -44,9 +44,10 @@ namespace biblioteca
                 bool continuar;
                 int pk;
                 Sql.conector.Open();
-                string query = "SELECT nome_editora FROM Editora WHERE nome_editora = '" + nome_editora.ToUpper() + "'";
+                string query = "SELECT nome_editora FROM Editora WHERE nome_editora = @editora";
                 using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@editora", nome_editora.ToUpper());
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (!reader.HasRows)
@@ -58,9 +59,10 @@ namespace biblioteca
 
                 }
 
-                string selectpk = "SELECT pk_id_cidade FROM Cidade where nome_cidade = '" + Global.cidade_usared.ToUpper() + "'";
+                string selectpk = "SELECT pk_id_cidade FROM Cidade where nome_cidade = @cidade";
                 using (SqlCommand cmd = new SqlCommand(selectpk, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@cidade", Global.cidade_usared);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -70,17 +72,20 @@ namespace biblioteca
                     }
                 }
 
-                string insert = $"INSERT INTO Editora(nome_editora, fk_id_cidade_editora) VALUES ('{nome_editora.ToUpper()}', {Global.pk_cidade.ToString()})";
+                string insert = $"INSERT INTO Editora(nome_editora, fk_id_cidade_editora) VALUES (@editora, @cidade)";
                 using (SqlCommand cmd = new SqlCommand(insert, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@editora", nome_editora.ToUpper());
+                    cmd.Parameters.AddWithValue("@cidade", Global.pk_cidade.ToString());
                     cmd.ExecuteNonQuery();
                     DialogResult d = MessageBox.Show("Sucesso!");
                     if (d == DialogResult.OK)
                     {
 
-                        string selectED = $"SELECT nome_editora FROM editora WHERE nome_editora = '{nome_editora}' ";
+                        string selectED = $"SELECT nome_editora FROM editora WHERE nome_editora = @nomeEditora ";
                         using (SqlCommand cmdd = new SqlCommand(selectED, Sql.conector))
                         {
+                            cmd.Parameters.AddWithValue("@nomeEditora", nome_editora);
                             using (SqlDataReader reader = cmdd.ExecuteReader())
                             {
                                 if (reader.Read())
@@ -100,8 +105,8 @@ namespace biblioteca
 
                 }
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
         }
 
         private void btnSair_Click(object sender, EventArgs e)

@@ -163,7 +163,8 @@ namespace biblioteca
 
         private void rjButton4_Click_1(object sender, EventArgs e)
         {
-
+            CadOperador co = new CadOperador();
+            co.ShowDialog();
         }
     }
 }

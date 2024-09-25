@@ -30,6 +30,8 @@
         {
             RJCodeAdvance.RJControls.RJButton btnMinimizate;
             RJCodeAdvance.RJControls.RJButton btnSair;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -83,6 +85,15 @@
             this.btnCancelar = new RJCodeAdvance.RJControls.RJButton();
             this.panel17 = new System.Windows.Forms.Panel();
             this.btnConfirmar = new RJCodeAdvance.RJControls.RJButton();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.dgvEditora = new System.Windows.Forms.DataGridView();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.separar = new RJCodeAdvance.RJControls.RJButton();
+            this.rjButton1 = new RJCodeAdvance.RJControls.RJButton();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.rjTextBox1 = new RJCodeAdvance.RJControls.RJTextBox();
             btnMinimizate = new RJCodeAdvance.RJControls.RJButton();
             btnSair = new RJCodeAdvance.RJControls.RJButton();
             this.panel10.SuspendLayout();
@@ -103,6 +114,9 @@
             this.panel13.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
+            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditora)).BeginInit();
+            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMinimizate
@@ -166,7 +180,7 @@
             this.panel14.Controls.Add(this.txtAno);
             this.panel14.Location = new System.Drawing.Point(0, 0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(341, 70);
+            this.panel14.Size = new System.Drawing.Size(341, 88);
             this.panel14.TabIndex = 2;
             // 
             // lblAno
@@ -174,7 +188,7 @@
             this.lblAno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAno.AutoSize = true;
             this.lblAno.ForeColor = System.Drawing.Color.White;
-            this.lblAno.Location = new System.Drawing.Point(21, 29);
+            this.lblAno.Location = new System.Drawing.Point(21, 38);
             this.lblAno.Name = "lblAno";
             this.lblAno.Size = new System.Drawing.Size(26, 13);
             this.lblAno.TabIndex = 9;
@@ -190,7 +204,7 @@
             this.txtAno.BorderSize = 2;
             this.txtAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAno.ForeColor = System.Drawing.Color.White;
-            this.txtAno.Location = new System.Drawing.Point(95, 21);
+            this.txtAno.Location = new System.Drawing.Point(95, 30);
             this.txtAno.Margin = new System.Windows.Forms.Padding(4);
             this.txtAno.Multiline = false;
             this.txtAno.Name = "txtAno";
@@ -816,7 +830,7 @@
             this.panel13.Controls.Add(this.txtPags);
             this.panel13.Location = new System.Drawing.Point(339, 413);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(341, 70);
+            this.panel13.Size = new System.Drawing.Size(341, 88);
             this.panel13.TabIndex = 3;
             // 
             // lblPags
@@ -824,7 +838,7 @@
             this.lblPags.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPags.AutoSize = true;
             this.lblPags.ForeColor = System.Drawing.Color.White;
-            this.lblPags.Location = new System.Drawing.Point(20, 28);
+            this.lblPags.Location = new System.Drawing.Point(20, 37);
             this.lblPags.Name = "lblPags";
             this.lblPags.Size = new System.Drawing.Size(74, 13);
             this.lblPags.TabIndex = 11;
@@ -840,7 +854,7 @@
             this.txtPags.BorderSize = 2;
             this.txtPags.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPags.ForeColor = System.Drawing.Color.White;
-            this.txtPags.Location = new System.Drawing.Point(96, 20);
+            this.txtPags.Location = new System.Drawing.Point(96, 29);
             this.txtPags.Margin = new System.Windows.Forms.Padding(4);
             this.txtPags.Multiline = false;
             this.txtPags.Name = "txtPags";
@@ -918,12 +932,151 @@
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.vScrollBar1);
+            this.panel15.Controls.Add(this.hScrollBar1);
+            this.panel15.Controls.Add(this.dgvEditora);
+            this.panel15.Controls.Add(this.panel18);
+            this.panel15.Location = new System.Drawing.Point(0, 507);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(1366, 263);
+            this.panel15.TabIndex = 28;
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(1349, 80);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(15, 165);
+            this.vScrollBar1.TabIndex = 42;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(0, 245);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(1366, 15);
+            this.hScrollBar1.TabIndex = 41;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            // 
+            // dgvEditora
+            // 
+            this.dgvEditora.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEditora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvEditora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEditora.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvEditora.GridColor = System.Drawing.Color.White;
+            this.dgvEditora.Location = new System.Drawing.Point(3, 80);
+            this.dgvEditora.Name = "dgvEditora";
+            this.dgvEditora.Size = new System.Drawing.Size(1360, 180);
+            this.dgvEditora.TabIndex = 40;
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.separar);
+            this.panel18.Controls.Add(this.rjButton1);
+            this.panel18.Controls.Add(this.lblSearch);
+            this.panel18.Controls.Add(this.rjTextBox1);
+            this.panel18.Location = new System.Drawing.Point(3, 3);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(1360, 71);
+            this.panel18.TabIndex = 22;
+            // 
+            // separar
+            // 
+            this.separar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.separar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.separar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.separar.BorderRadius = 10;
+            this.separar.BorderSize = 0;
+            this.separar.FlatAppearance.BorderSize = 0;
+            this.separar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.separar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.separar.ForeColor = System.Drawing.Color.White;
+            this.separar.Location = new System.Drawing.Point(0, -3);
+            this.separar.Name = "separar";
+            this.separar.Size = new System.Drawing.Size(1363, 10);
+            this.separar.TabIndex = 43;
+            this.separar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.separar.TextColor = System.Drawing.Color.White;
+            this.separar.UseVisualStyleBackColor = false;
+            // 
+            // rjButton1
+            // 
+            this.rjButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.rjButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.rjButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.rjButton1.BorderRadius = 10;
+            this.rjButton1.BorderSize = 0;
+            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton1.ForeColor = System.Drawing.Color.White;
+            this.rjButton1.Image = global::biblioteca.Properties.Resources.lupa;
+            this.rjButton1.Location = new System.Drawing.Point(988, 21);
+            this.rjButton1.Name = "rjButton1";
+            this.rjButton1.Size = new System.Drawing.Size(45, 32);
+            this.rjButton1.TabIndex = 18;
+            this.rjButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.rjButton1.TextColor = System.Drawing.Color.White;
+            this.rjButton1.UseVisualStyleBackColor = false;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.ForeColor = System.Drawing.Color.White;
+            this.lblSearch.Location = new System.Drawing.Point(260, 21);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(269, 24);
+            this.lblSearch.TabIndex = 17;
+            this.lblSearch.Text = "Procurar por livros cadastrados";
+            // 
+            // rjTextBox1
+            // 
+            this.rjTextBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rjTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.rjTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(52)))));
+            this.rjTextBox1.BorderFocusColor = System.Drawing.Color.White;
+            this.rjTextBox1.BorderRadius = 0;
+            this.rjTextBox1.BorderSize = 2;
+            this.rjTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjTextBox1.ForeColor = System.Drawing.Color.White;
+            this.rjTextBox1.Location = new System.Drawing.Point(536, 21);
+            this.rjTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.rjTextBox1.Multiline = false;
+            this.rjTextBox1.Name = "rjTextBox1";
+            this.rjTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rjTextBox1.PasswordChar = false;
+            this.rjTextBox1.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rjTextBox1.PlaceholderText = "";
+            this.rjTextBox1.Size = new System.Drawing.Size(445, 31);
+            this.rjTextBox1.TabIndex = 16;
+            this.rjTextBox1.Texts = "";
+            this.rjTextBox1.UnderlinedStyle = false;
+            // 
             // CadLivro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.panel15);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel16);
             this.Controls.Add(this.panel13);
@@ -974,6 +1127,10 @@
             this.panel13.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditora)).EndInit();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1033,5 +1190,14 @@
         private System.Windows.Forms.Panel panel17;
         private RJCodeAdvance.RJControls.RJButton btnConfirmar;
         private RJCodeAdvance.RJControls.RJComboBox cbbTipo;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel18;
+        private RJCodeAdvance.RJControls.RJButton rjButton1;
+        private System.Windows.Forms.Label lblSearch;
+        private RJCodeAdvance.RJControls.RJTextBox rjTextBox1;
+        private System.Windows.Forms.DataGridView dgvEditora;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private RJCodeAdvance.RJControls.RJButton separar;
     }
 }

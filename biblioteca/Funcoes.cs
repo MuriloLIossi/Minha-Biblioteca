@@ -23,7 +23,7 @@ namespace biblioteca
             catch (SqlException ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
 
             }
         }
@@ -72,9 +72,10 @@ namespace biblioteca
             {
                 Sql.conector.Close();
                 Sql.conector.Open();
-                string query = $"SELECT pk_id_editora FROM Editora WHERE nome_editora = '{Global.mainEditora}' ";
+                string query = $"SELECT pk_id_editora FROM Editora WHERE nome_editora = @mainEditora ";
                 using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@mainEditora", Global.mainEditora);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -85,8 +86,8 @@ namespace biblioteca
                 }
                 Sql.conector.Close();
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
  
             return Global.editoraPk;
         }
@@ -98,9 +99,10 @@ namespace biblioteca
             {
                 Sql.conector.Close();
                 Sql.conector.Open();
-                string query = $"SELECT pk_id_idioma FROM Idioma WHERE nome_idioma = '{Global.UsarIdioma.ToUpper()}' ";
+                string query = $"SELECT pk_id_idioma FROM Idioma WHERE nome_idioma = @usarIdioma ";
                 using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@usarIdioma", Global.UsarIdioma);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -113,8 +115,8 @@ namespace biblioteca
                 Sql.conector.Close();
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
             return Global.idiomaPk;
         }
@@ -125,9 +127,10 @@ namespace biblioteca
             {
                 Sql.conector.Close();
                 Sql.conector.Open();
-                string query = $"SELECT pk_id_autor FROM Autor WHERE nome_autor = '{Global.UsarAutor}' ";
+                string query = "SELECT pk_id_autor FROM Autor WHERE nome_autor = @UsarAutor ";
                 using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@UsarAutor", Global.UsarAutor);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -140,8 +143,8 @@ namespace biblioteca
                 Sql.conector.Close();
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
             return Global.autorPk;
         }
@@ -153,9 +156,10 @@ namespace biblioteca
             {
                 Sql.conector.Close();
                 Sql.conector.Open();
-                string query = $"SELECT pk_id_tipo_publicacao FROM Tipo_publicacao WHERE nome_tipo_publicacao = '{Global.usarTipoPub}' ";
+                string query = $"SELECT pk_id_tipo_publicacao FROM Tipo_publicacao WHERE nome_tipo_publicacao = @usarTipoPub ";
                 using (SqlCommand cmd = new SqlCommand(query, Sql.conector))
                 {
+                    cmd.Parameters.AddWithValue("@usarTipoPub", Global.usarTipoPub);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -168,8 +172,8 @@ namespace biblioteca
                 Sql.conector.Close();
 
             }
-            catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
             return Global.tipoPubPk;
         }

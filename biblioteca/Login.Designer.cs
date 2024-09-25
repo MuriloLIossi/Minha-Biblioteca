@@ -155,6 +155,7 @@
             this.txtSenha.TabIndex = 1;
             this.txtSenha.Texts = "";
             this.txtSenha.UnderlinedStyle = false;
+            this.txtSenha._TextChanged += new System.EventHandler(this.txtSenha__TextChanged);
             // 
             // btnLogin
             // 

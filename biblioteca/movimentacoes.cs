@@ -143,15 +143,33 @@ namespace biblioteca
             try
             {
                 Sql.conector.Open();
-                SqlCommand buscarUser = new SqlCommand("SELECT nome_usuario FROM Usuario WHERE pk_id_usuario = '" + txtCod.Text + "' ", Sql.conector);
-                bool resultado = buscarUser.ExecuteReader().HasRows;
-
-                if (resultado == true)
+                string cod = txtCod.Text;
+                bool resultado;
+                string userbuscado;
+                string query = "SELECT nome_usuario FROM Usuario WHERE pk_id_usuario = @cod";
+                using(SqlCommand buscarUser = new SqlCommand(query, Sql.conector))
                 {
-                    txtNomeUser.Text = buscarUser.ToString();
+                    buscarUser.Parameters.AddWithValue("@cod", cod);
+                    resultado = buscarUser.ExecuteReader().HasRows;
+                    if (resultado == true)
+                    {
+                        using (SqlDataReader reader = buscarUser.ExecuteReader())
+                        {
+                            userbuscado = buscarUser.ToString();
+                        }
+
+                        txtNomeUser.Text = userbuscado;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário não encontrado");
+                    }
                 }
+
+                Sql.conector.Close();
             }
-            catch { }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
         }
 
@@ -161,15 +179,26 @@ namespace biblioteca
             try
             {
                 Sql.conector.Open();
-                SqlCommand buscarAux = new SqlCommand("SELECT cod_aux_exemplar FROM Exemplar WHERE pk_id_livro = '" + txtCod.Text + "' ", Sql.conector);
-                bool resultado = buscarAux.ExecuteReader().HasRows;
-
-                if (resultado == true)
+                string cod = txtCod.Text;
+                string query = "SELECT cod_aux_exemplar FROM Exemplar WHERE fk_id_livro = @cod ";
+                string codBuscado;
+                using(SqlCommand buscarAux = new SqlCommand(query, Sql.conector))
                 {
-                    txtNomeUser.Text = buscarAux.ToString();
+                    buscarAux.Parameters.AddWithValue("@cod", cod);
+                    bool resultado = buscarAux.ExecuteReader().HasRows;
+                    if (resultado == true)
+                    {
+                      using(SqlDataReader reader = buscarAux.ExecuteReader())
+                        {
+                            codBuscado = reader["cod_aux_exemplar"].ToString();
+                        }
+                        txtCod.Text = codBuscado;
+                    }
                 }
+                Sql.conector.Close();
             }
-            catch { }
+            catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
 
         }
 

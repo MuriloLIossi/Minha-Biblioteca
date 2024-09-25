@@ -70,9 +70,14 @@ namespace biblioteca
 
                 Sql.conector.Close();
                 Sql.conector.Open();
-                SqlCommand inserir = new SqlCommand("INSERT INTO Autor (nome_autor, fk_id_nacionalidade_autor) VALUES ('" + txtAutor.Texts.ToUpper() + "', " + Global.pkBuscada + ") ", Sql.conector);
-                inserir.ExecuteNonQuery();
-
+                string Autor = txtAutor.Texts.ToUpper();
+                string query = "INSERT INTO Autor (nome_autor, fk_id_nacionalidade_autor) VALUES (@autor, @fkNacio)";
+                using (SqlCommand inserir = new SqlCommand(query, Sql.conector))
+                {
+                    inserir.Parameters.AddWithValue("@autor", Autor);
+                    inserir.Parameters.AddWithValue("@fkNacio", Global.pkBuscada);
+                    inserir.ExecuteNonQuery();
+                }
                 Sql.conector.Close();
                 MessageBox.Show("Sucesso!");
                 Global.usarNomeAutor = txtAutor.Texts;
@@ -81,8 +86,18 @@ namespace biblioteca
             }
             catch (SqlException ex)
             {
-                string err = ex.ToString();
+                string err = ex.Message;
                 MessageBox.Show(err);
+                Sql.conector.Close();
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+                MessageBox.Show(err);
+                Sql.conector.Close();
+            }
+            finally
+            {
                 Sql.conector.Close();
             }
 
@@ -117,16 +132,20 @@ namespace biblioteca
         #region metodo_secreto_pk_to_string
         public string buscaPk()
         {
-            string resultado = string.Empty;    
+            string resultado = string.Empty;
 
-            SqlCommand buscapk = new SqlCommand("SELECT pk_id_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = '" + Global.usarNomeNacionalidade + "' ", Sql.conector);
-            SqlDataReader reader = buscapk.ExecuteReader();
-
-            if (reader.Read())
+            string query = "SELECT pk_id_nacionalidade FROM Nacionalidade WHERE nome_nacionalidade = @usarNomeNacionalidade";
+            using (SqlCommand buscapk = new SqlCommand(query, Sql.conector))
             {
-                resultado = reader["pk_id_nacionalidade"].ToString();
+                buscapk.Parameters.AddWithValue("@usarNomeNacionalidade", Global.usarNomeNacionalidade);
+                using(SqlDataReader reader = buscapk.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        resultado = reader["pk_id_nacionalidade"].ToString();
+                    }
+                }
             }
-
             return resultado;
             
 

@@ -94,13 +94,13 @@ namespace biblioteca
                 {
                     Sql.conector.Close();
                     Sql.conector.Open();
-                    string query = "SELECT nome_cidade FROM cidade WHERE nome_cidade LIKE '%" + txtCidades.Texts.ToUpper() + "%' ";
+                    string cidade = txtCidades.Texts;
+                    string query = "SELECT nome_cidade FROM cidade WHERE nome_cidade LIKE '%'+@cidade+'%' ";
                     Atualiza();
                     bool result;
                     using (SqlCommand buscar = new SqlCommand(query, Sql.conector))
-                    {
-
-
+                    { 
+                        buscar.Parameters.AddWithValue("@cidade", cidade);
                         using (SqlDataReader reader = buscar.ExecuteReader())
                         {
                            result = reader.HasRows;
@@ -127,7 +127,7 @@ namespace biblioteca
                       
             } catch (SqlException ex) 
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
                 Sql.conector.Close();
             }
         }

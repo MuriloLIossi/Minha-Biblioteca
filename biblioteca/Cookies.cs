@@ -10,6 +10,8 @@ namespace biblioteca
     {
 
         public static bool resultado;
-
+        public static bool continuar;
+        public static string senhaResult;
+        public static bool verificar;
     }
 }

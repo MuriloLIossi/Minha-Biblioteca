@@ -71,6 +71,7 @@ namespace biblioteca
         public static string idiomaPk;
         public static string autorPk;
         public static string tipoPubPk;
+        public static string senhaCript;
 
     }
 

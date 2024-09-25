@@ -72,9 +72,10 @@ namespace biblioteca
                 try
                 {
                     Sql.conector.Open();
-                    string query = "SELECT nome_editora FROM Editora WHERE nome_editora LIKE '%" + Global.editora + "%' ";
+                    string query = "SELECT nome_editora FROM Editora WHERE nome_editora LIKE '%'+@editora+'%' ";
                     using (SqlCommand pesq = new SqlCommand(query, Sql.conector))
                     {
+                        pesq.Parameters.AddWithValue("@editora", Global.editora);
                         using (SqlDataReader reader = pesq.ExecuteReader())
                         {
                             result = reader.HasRows;
@@ -92,8 +93,8 @@ namespace biblioteca
                         Atualiza();
                     }
                 }
-                catch (SqlException ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
-                catch (Exception ex) { MessageBox.Show(ex.ToString()); Sql.conector.Close(); }
+                catch (SqlException ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
+                catch (Exception ex) { MessageBox.Show(ex.Message); Sql.conector.Close(); }
             }
         }
 

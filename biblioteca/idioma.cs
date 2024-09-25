@@ -59,8 +59,12 @@ namespace biblioteca
                 {
 
                     Sql.conector.Open();
-                    SqlCommand procurar = new SqlCommand("SELECT nome_idioma FROM Idioma WHERE nome_idioma = '" + Global.idioma.ToUpper() + "'", Sql.conector);
-                    Global.resultNomeNacionalidade = procurar.ExecuteReader().HasRows;
+                    string query = "SELECT nome_idioma FROM Idioma WHERE nome_idioma = @Idioma";
+                    using(SqlCommand procurar = new SqlCommand(query, Sql.conector))
+                    {
+                        procurar.Parameters.AddWithValue("@Idioma", Global.idioma.ToUpper());
+                        Global.resultNomeNacionalidade = procurar.ExecuteReader().HasRows;
+                    }
 
                     if (Global.resultNomeNacionalidade == true)
                     {
@@ -73,7 +77,7 @@ namespace biblioteca
                 }
                 catch (SqlException ex)
                 {
-                    string err = ex.ToString();
+                    string err = ex.Message;
                     Sql.conector.Close();
                 }
 
@@ -111,17 +115,27 @@ namespace biblioteca
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
 
-               #region Adicionand_Nacionalidade
+               #region Adicionando_idioma
             try
             {
                 Global.idioma = txtIdioma.Texts;
 
                 Sql.conector.Open();
-                SqlCommand adc = new SqlCommand("INSERT INTO Idioma (nome_idioma) VALUES ('" + Global.idioma.ToUpper() + "')", Sql.conector);
-                adc.ExecuteNonQuery();
+                string query = "INSERT INTO Idioma (nome_idioma) VALUES (@Idioma)";
+                using(SqlCommand adc = new SqlCommand(query, Sql.conector))
+                {
+                    adc.Parameters.AddWithValue("@Idioma", Global.idioma.ToUpper());
+                    adc.ExecuteNonQuery();
+                }
 
-                SqlCommand certeza = new SqlCommand("SELECT nome_idioma FROM Idioma WHERE nome_idioma = '" + Global.nomeNacionalidade + "' ", Sql.conector);
-                bool result1 = certeza.ExecuteReader().HasRows;
+                bool result1;
+                string query2 = "SELECT nome_idioma FROM Idioma WHERE nome_idioma = @idioma"; 
+                using(SqlCommand certeza = new SqlCommand(query2, Sql.conector))
+                {
+                    certeza.Parameters.AddWithValue("@idioma", Global.idioma);
+                    result1 = certeza.ExecuteReader().HasRows;
+                }
+
 
                 if (result1 == true)
                 {
@@ -133,7 +147,7 @@ namespace biblioteca
             }
             catch (SqlException ex)
             {
-                string err = ex.ToString();
+                string err = ex.Message;
                 Sql.conector.Close();
             }
             #endregion
@@ -141,7 +155,7 @@ namespace biblioteca
 
         private void rjButton1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Global.nomeIdioma);
+
         }
 
         private void txtIdioma__TextChanged(object sender, EventArgs e)
